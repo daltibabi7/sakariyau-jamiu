@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sakariyau Jamiu & Co. | Chartered Estate Surveyors & Valuers</title>
+  <meta name="description" content="Distinguished firm of Registered Estate Surveyors, Valuers, Real Estate Consultants, and Property Managers in Nigeria. Luxury property sales, professional valuations, and facility management.">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Floating WhatsApp Contact Widget -->
+  <a href="https://wa.me/2347038620904?text=Hello,%20I%20have%20an%20inquiry%20regarding%20your%20real%20estate%20services." 
+     class="whatsapp-floating" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     aria-label="Contact us on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="logo-container">
+      <div class="logo-icon">S</div>
+      <div class="logo-text">
+        <span class="logo-title">SAKARIYAU JAMIU</span>
+        <span class="logo-subtitle">& CO.</span>
+      </div>
+    </div>
+    
+    <nav id="nav-menu">
+      <a href="#home" class="nav-link active" onclick="navigate('home')">Home</a>
+      <a href="#about" class="nav-link" onclick="navigate('about')">About Us</a>
+      <a href="#services" class="nav-link" onclick="navigate('services')">Services</a>
+      <a href="#listings" class="nav-link" onclick="navigate('listings')">Properties</a>
+      <a href="#admin" class="nav-link" onclick="navigate('admin')">Add Listing</a>
+      <a href="#contact" class="nav-link" onclick="navigate('contact')">Contact</a>
+    </nav>
+    
+    <div class="header-cta">
+      <a href="tel:+2347038620904" class="phone-link">
+        <i class="fa-solid fa-phone-volume"></i>
+        <span>+234 703 862 0904</span>
+      </a>
+      <a href="#contact" class="btn btn-primary" onclick="navigate('contact')">Get In Touch</a>
+    </div>
+    
+    <div class="menu-toggle" id="menu-toggle-btn" onclick="toggleMobileMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+  </header>
+
+  <!-- Notification Toast -->
+  <div id="toast-notification" class="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toast-message">Submission successful!</span>
+  </div>
+
+  <!-- Main Multi-View Router Wrapper -->
+  <main>
+
+    <!-- ============================================== -->
+    <!-- VIEW 1: HOME PAGE                              -->
+    <!-- ============================================== -->
+    <div id="view-home" class="page-view active">
+      
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <div class="hero-badge">Est. Surveyors & Valuers</div>
+          <h1 class="hero-title text-gradient">Transforming Real Estate Into Strategic Wealth</h1>
+          <p class="hero-description">
+            We are a distinguished firm of Registered Estate Surveyors and Valuers, Real Estate Consultants, and Property Managers strategically positioned to deliver transformative solutions across the entire value chain.
+          </p>
+          <div class="hero-ctas">
+            <a href="#listings" class="btn btn-primary" onclick="navigate('listings')">Browse Listings</a>
+            <a href="#services" class="btn btn-outline" onclick="navigate('services')">Our Services</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">8+ Years</span>
+              <span class="stat-label">Industry Mastery</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">100+</span>
+              <span class="stat-label">Valuation Audits</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">6 Offices</span>
+              <span class="stat-label">Nationwide Presence</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-canvas-container">
+          <div class="canvas-glow"></div>
+          <canvas id="hero-canvas"></canvas>
+          <div class="canvas-hint">
+            <i class="fa-solid fa-arrows-spin"></i> Drag to Orbit 3D Architecture
+          </div>
+        </div>
+      </section>
+
+      <!-- Credentials Hub Ribbon -->
+      <div class="credentials-bar">
+        <div class="credentials-bar-label">Licensed & Verified By Federal Regulatory Bodies</div>
+        <div class="credentials-logos">
+          <div class="credential-badge" onclick="openCredential('esvarbon')">
+            <i class="fa-solid fa-gavel"></i>
+            <span>ESVARBON</span>
+          </div>
+          <div class="credential-badge" onclick="openCredential('niesv')">
+            <i class="fa-solid fa-building-shield"></i>
+            <span>NIESV</span>
+          </div>
+          <div class="credential-badge" onclick="openCredential('cac')">
+            <i class="fa-solid fa-stamp"></i>
+            <span>CAC Accredited</span>
+          </div>
+          <div class="credential-badge" onclick="openCredential('frcn')">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>FRC Registered</span>
+          </div>
+          <div class="credential-badge" onclick="openCredential('scuml')">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>SCUML Registered</span>
+          </div>
+          <div class="credential-badge" onclick="openCredential('jtb')">
+            <i class="fa-solid fa-receipt"></i>
+            <span>JTB Verified</span>
+          </div>
+          <div class="credential-badge" onclick="openCredential('emple')">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>emPLE Indemnity</span>
+          </div>
+          <div class="credential-badge" onclick="openCredential('royal_exchange')">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <span>Royal Exchange</span>
+          </div>
+          <div class="credential-badge" onclick="openCredential('itf')">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>ITF Compliant</span>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Core Values Section -->
+      <section class="values-section">
+        <div class="section-header">
+          <span class="section-subtitle">Our Foundations</span>
+          <h2 class="section-title">The Principles Supporting Our Mastery</h2>
+          <p class="section-desc">We uphold strict professionalism, integrity, and precision to foster trust and execute results that exceed expectations.</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon"><i class="fa-solid fa-shield-heart"></i></div>
+            <h3>Integrity</h3>
+            <p>Upholding absolute honesty, transparency, and ethical compliance in all valuation audits, sales, and management exercises.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="fa-solid fa-award"></i></div>
+            <h3>Expertise</h3>
+            <p>Leveraging deep industrial and academic insight, local market trends, and modern computational models to minimize investment risk.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="fa-solid fa-crosshairs"></i></div>
+            <h3>Accuracy</h3>
+            <p>Providing precise, compliant, and legally-binding appraisal documentation that protects client wealth and supports fiscal integrity.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="fa-solid fa-briefcase"></i></div>
+            <h3>Professionalism</h3>
+            <p>Maintaining the highest standards of communication, execution speed, and customer-focused problem-solving across Nigeria.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+            <h3>Reliability</h3>
+            <p>Consistently delivering valuation reports and facility management metrics that corporate boards and Microfinance banks trust.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Track Record Banner Callout -->
+      <section style="padding-top: 0;">
+        <div class="track-banner">
+          <div class="track-banner-text">
+            <span class="section-subtitle" style="text-align: left; margin-bottom: 8px;">Valuation Track Record</span>
+            <h3>National Asset Appraisers & Analysts</h3>
+            <p>From the former Heritage Bank Head Office in Victoria Island to AFEX Agricultural Logistics Hubs across 5 states, we evaluate assets with global standard precision.</p>
+          </div>
+          <div>
+            <a href="#about" class="btn btn-primary" onclick="navigate('about')">Read Track Record</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ============================================== -->
+    <!-- VIEW 2: ABOUT / PROFILE PAGE                   -->
+    <!-- ============================================== -->
+    <div id="view-about" class="page-view">
+      
+      <!-- Profile Section -->
+      <section class="about-section">
+        <div class="about-text">
+          <span class="section-subtitle">Corporate Profile</span>
+          <h2 class="section-title">Elevating Corporate Operations & Asset Valuations</h2>
+          <p>
+            Sakariyau Jamiu & Co. is fully licensed by the Estate Surveyors and Valuers Registration Board of Nigeria (ESVARBON) and the Corporate Affairs Commission (CAC). Led by forward-thinking practitioners, we constantly pioneer cutting-edge valuation and management methodologies.
+          </p>
+          <p>
+            We represent corporate companies, banks, government institutions, and high-net-worth clients, delivering precise valuation compliance, structured facility optimization, and dispute-free documentation processes.
+          </p>
+          
+          <div class="about-grid-credentials">
+            <div class="about-cred-card">
+              <h4>Our Vision</h4>
+              <p>To be the foremost provider of innovative and trusted real estate surveying and valuation services shaping the future of property decisions with excellence and integrity.</p>
+            </div>
+            <div class="about-cred-card">
+              <h4>Our Mission</h4>
+              <p>To deliver expert, accurate and reliable property valuation and surveying solutions that foster trust and empower clients with confident decision-making.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-card" style="border-color: var(--primary);">
+          <span class="section-subtitle" style="text-align: left; margin-bottom: 0;">Principal Partner Profile</span>
+          <h3>ESV. Sakariyau Jamiu Kayode</h3>
+          <p class="partner-qualification" style="font-size: 0.8rem; margin-bottom: 10px;">ND, B.Tech (First Class Honours), M.Tech (Distinction), MNIVS, RSV, PhD in View</p>
+          <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-muted);">
+            ESV. Kayode leads the firm with academic mastery and professional diligence. Holding a First Class Bachelors and a Master’s with Distinction in Real Estate Management from ATBU, he is currently pursuing a PhD. He is a certified member of NIESV, ESVARBON, and the Financial Reporting Council of Nigeria. His specialties include complex commercial and plant/machinery valuations, facility systems optimization, and corporate land titling strategies.
+          </p>
+          <a href="https://wa.me/2347038620904?text=Hello%20ESV.%20Sakariyau,%20I'm%20seeking%20advisory%20services." 
+             class="btn btn-whatsapp" 
+             target="_blank" 
+             rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i> Chat with Principal Partner
+          </a>
+        </div>
+      </section>
+
+      <!-- Partners & Leadership Team Grid -->
+      <section class="partners-section">
+        <div class="section-header">
+          <span class="section-subtitle">Executive Team</span>
+          <h2 class="section-title">Our Partners & Industry Professionals</h2>
+          <p class="section-desc">Our management consists of seasoned practitioners with deep market insight, legal expertise, and financial competence.</p>
+        </div>
+        
+        <div class="partners-grid">
+          
+          <!-- Partner 2 -->
+          <div class="partner-card">
+            <div class="partner-card-header">
+              <div class="partner-avatar">IH</div>
+              <div class="partner-meta">
+                <h3>ESV. Ibifubara Saturday Horsfall</h3>
+                <span class="partner-qualification">B.Tech, MNIVS, RSV</span>
+              </div>
+            </div>
+            <span class="partner-badge">Partner</span>
+            <p class="partner-bio">A graduate of Rivers State University with over 4 years of expertise. Specializes in asset valuation audits, property database engineering, and real estate data analytics.</p>
+          </div>
+
+          <!-- Partner 3 -->
+          <div class="partner-card">
+            <div class="partner-card-header">
+              <div class="partner-avatar">GA</div>
+              <div class="partner-meta">
+                <h3>ESV. Gidado Abdulwaheed Ayobami</h3>
+                <span class="partner-qualification">HND, MNIVS</span>
+              </div>
+            </div>
+            <span class="partner-badge">Associate Partner</span>
+            <p class="partner-bio">With over 6 years of core expertise in facility operations and commercial agency. Alumnus of Kwara State Polytechnic, maintaining active compliance benchmarks.</p>
+          </div>
+
+          <!-- Partner 4 -->
+          <div class="partner-card">
+            <div class="partner-card-header">
+              <div class="partner-avatar">AS</div>
+              <div class="partner-meta">
+                <h3>ESV. Abdulkareem Salamat</h3>
+                <span class="partner-qualification">B.Tech, M.Sc, MNIVS, RSV, PhD in View</span>
+              </div>
+            </div>
+            <span class="partner-badge">Managing Partner</span>
+            <p class="partner-bio">A licensed valuer with over 5 years of industry experience. Holds degrees from FUT Minna and the University of Lagos. Specializes in landlord-tenant dispute consulting and letting systems.</p>
+          </div>
+
+          <!-- Partner 5 -->
+          <div class="partner-card">
+            <div class="partner-card-header">
+              <div class="partner-avatar">AR</div>
+              <div class="partner-meta">
+                <h3>ESV. Ajibade Kayode Rasheed</h3>
+                <span class="partner-qualification">ND, HND, B.Tech, M.Tech, MNIVS, RSV, PhD in View</span>
+              </div>
+            </div>
+            <span class="partner-badge">Partner</span>
+            <p class="partner-bio">Bringing deep academic expertise from FUT Minna and ATBU Bauchi. Highly skilled in industrial valuation audits, plant inventories, and environmental risk analysis.</p>
+          </div>
+
+          <!-- Partner 6 -->
+          <div class="partner-card">
+            <div class="partner-card-header">
+              <div class="partner-avatar">AM</div>
+              <div class="partner-meta">
+                <h3>Mr. Adam Mukhtar Abdulsalam</h3>
+                <span class="partner-qualification">Bachelor's in Sharia & Law, Diploma in Biz Admin</span>
+              </div>
+            </div>
+            <span class="partner-badge">Partner</span>
+            <p class="partner-bio">Holds a law degree from Al Azhar University Cairo, business credentials from AUC, and a Real Estate Certificate from ESLSCA Heliopolis. Bridging legal compliance and land advisory.</p>
+          </div>
+
+          <!-- Partner 7 -->
+          <div class="partner-card">
+            <div class="partner-card-header">
+              <div class="partner-avatar">TO</div>
+              <div class="partner-meta">
+                <h3>ESV. Temitope Olaoye</h3>
+                <span class="partner-qualification">HND, B.Sc, ANIVS, RSV</span>
+              </div>
+            </div>
+            <span class="partner-badge">Partner</span>
+            <p class="partner-bio">A skilled surveyor with strong competencies in asset optimization. Highly active in residential facility leasing and asset management operations in central Abuja.</p>
+          </div>
+
+          <!-- Partner 8 -->
+          <div class="partner-card">
+            <div class="partner-card-header">
+              <div class="partner-avatar">MF</div>
+              <div class="partner-meta">
+                <h3>ESV. Misbahu Abdulkadir Falaki</h3>
+                <span class="partner-qualification">B.Tech, M.Tech, PhD in View</span>
+              </div>
+            </div>
+            <span class="partner-badge">Associate Partner</span>
+            <p class="partner-bio">Over 5 years of certified expertise. Focuses on investment appraisals, land taxation valuations, and advanced housing asset analytics in Northern Nigeria.</p>
+          </div>
+
+          <!-- Partner 9 -->
+          <div class="partner-card">
+            <div class="partner-card-header">
+              <div class="partner-avatar">AN</div>
+              <div class="partner-meta">
+                <h3>ESV. Adegboye Ismail Nasir</h3>
+                <span class="partner-qualification">HND, MNIVS, RSV</span>
+              </div>
+            </div>
+            <span class="partner-badge">Managing Partner</span>
+            <p class="partner-bio">Holds an HND in Estate Management from Kwara State Polytechnic. Oversees firm valuation audits, agency deals, and commercial property administration with over 5 years experience.</p>
+          </div>
+
+          <!-- Partner 10 -->
+          <div class="partner-card">
+            <div class="partner-card-header">
+              <div class="partner-avatar">AS</div>
+              <div class="partner-meta">
+                <h3>ESV. Abraham Ojodomo Sunday</h3>
+                <span class="partner-qualification">HND, MNIVS, RSV</span>
+              </div>
+            </div>
+            <span class="partner-badge">Partner</span>
+            <p class="partner-bio">Alumnus of Federal Polytechnic Idah. Expert in infrastructural facility management, development viability appraisals, and execution of government asset audits.</p>
+          </div>
+
+          <!-- Partner 11 -->
+          <div class="partner-card">
+            <div class="partner-card-header">
+              <div class="partner-avatar">AD</div>
+              <div class="partner-meta">
+                <h3>Aaron Dadai</h3>
+                <span class="partner-qualification">HND, MNIVS</span>
+              </div>
+            </div>
+            <span class="partner-badge">Business Development Manager</span>
+            <p class="partner-bio">Dedicated client success professional with over 5 years experience in property letting, strategic branding, and high-net-worth partner relations.</p>
+          </div>
+
+          <!-- Partner 12 -->
+          <div class="partner-card">
+            <div class="partner-card-header">
+              <div class="partner-avatar">RA</div>
+              <div class="partner-meta">
+                <h3>Mrs. Rukayyat Abdulrasak</h3>
+                <span class="partner-qualification">ND, B.Tech</span>
+              </div>
+            </div>
+            <span class="partner-badge">Head of Finance & Company Sec.</span>
+            <p class="partner-bio">Graduated in Estate Management from ATBU Bauchi. Combines property asset modeling with corporate finance, managing budget compliance and audits.</p>
+          </div>
+
+          <!-- Partner 13 -->
+          <div class="partner-card">
+            <div class="partner-card-header">
+              <div class="partner-avatar">KH</div>
+              <div class="partner-meta">
+                <h3>ESV. Kabir Hamzat Adebayo</h3>
+                <span class="partner-qualification">B.Tech, M.Tech in View, ANIVS, RSV</span>
+              </div>
+            </div>
+            <span class="partner-badge">Associate Partner</span>
+            <p class="partner-bio">Highly skilled in structural asset surveying and valuation reports. Committed to advancing real estate analytics through research and practical application.</p>
+          </div>
+
+          <!-- Partner 14 -->
+          <div class="partner-card">
+            <div class="partner-card-header">
+              <div class="partner-avatar">AS</div>
+              <div class="partner-meta">
+                <h3>Barr. Ajikobi Abdulqudus Sultan</h3>
+                <span class="partner-qualification">LL.B (UNILORIN), B.L (Nigerian Law School)</span>
+              </div>
+            </div>
+            <span class="partner-badge">Legal Adviser</span>
+            <p class="partner-bio">Specializes in mortgage transaction laws, governor’s consent tracking, infrastructure project finance, syndication lending, and real estate litigation avoidance.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Previous Valuation Work / Experience -->
+      <section class="track-section">
+        <div class="section-header">
+          <span class="section-subtitle">Experience & Footprint</span>
+          <h2 class="section-title">Valuation Track Record</h2>
+          <p class="section-desc">A selection of major professional assets and valuations successfully executed by the firm.</p>
+        </div>
+        <div class="jobs-list">
+          <div class="job-card">
+            <span class="job-number">01</span>
+            <div class="job-info">
+              <h4>Energo Nigeria Limited</h4>
+              <p>Valuation of landed properties, machinery systems and offices at Maitama, FCT, Abuja.</p>
+            </div>
+          </div>
+          <div class="job-card">
+            <span class="job-number">02</span>
+            <div class="job-info">
+              <h4>Heritage Bank Head Office Annex</h4>
+              <p>Comprehensive asset valuation of the office complex at 130 Ahmadu Bello Way, Victoria Island, Lagos.</p>
+            </div>
+          </div>
+          <div class="job-card">
+            <span class="job-number">03</span>
+            <div class="job-info">
+              <h4>AFEX Commodities Exchange</h4>
+              <p>Large-scale inventory valuation of land, silos, warehouses, and machinery systems in Benue, Katsina, Kano, Ibadan, and Kaduna.</p>
+            </div>
+          </div>
+          <div class="job-card">
+            <span class="job-number">04</span>
+            <div class="job-info">
+              <h4>Lepton Multi Concepts Limited</h4>
+              <p>Valuation of luxury estate holdings, buildings, and land assets at Jabi, Wuse 2, Idu, and Jahi, Abuja.</p>
+            </div>
+          </div>
+          <div class="job-card">
+            <span class="job-number">05</span>
+            <div class="job-info">
+              <h4>Agbeyewa Farms Limited</h4>
+              <p>Asset evaluation of extensive agricultural land, industrial equipment, and fleet operations at Akure-Owo Expressway, Ondo State.</p>
+            </div>
+          </div>
+          <div class="job-card">
+            <span class="job-number">06</span>
+            <div class="job-info">
+              <h4>University of Abuja Microfinance Bank</h4>
+              <p>Verification and validation audits of title deeds and landed collaterals pledged by corporate borrowers.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Property & Facility Management Presence -->
+      <section class="management-presence">
+        <div class="section-header">
+          <span class="section-subtitle">Managed Assets</span>
+          <h2 class="section-title">Property & Facility Management Footprint</h2>
+          <p class="section-desc">Preserving long-term property values and optimizing tenant relations across key hubs.</p>
+        </div>
+        <div class="presence-grid">
+          <div class="presence-category">
+            <h3>Abuja (Federal Capital Territory)</h3>
+            <div class="presence-list">
+              <div class="presence-item">
+                <span class="presence-title">ORRIXE Gold Apartment, Guzape</span>
+                <span class="presence-desc">Facility Management: Luxury residential units serviced to international elite benchmarks.</span>
+              </div>
+              <div class="presence-item">
+                <span class="presence-title">Beijing Apartment, NNPC Estate, Life Camp</span>
+                <span class="presence-desc">Facility & Property Management: Serviced residences managed with green utility systems.</span>
+              </div>
+              <div class="presence-item">
+                <span class="presence-title">House A42, Fynstine Estate, Gwarinpa Extension</span>
+                <span class="presence-desc">Property Management: Full administrative control, leasing, and tenant liaison.</span>
+              </div>
+              <div class="presence-item">
+                <span class="presence-title">Mpape, Jahi, & Gwagwalada Portfolios</span>
+                <span class="presence-desc">Property Management: Multiple blocks containing 1-3 bedroom flats under full property management.</span>
+              </div>
+            </div>
+          </div>
+          <div class="presence-category">
+            <h3>Kwara State (North Central)</h3>
+            <div class="presence-list">
+              <div class="presence-item">
+                <span class="presence-title">Alagbado Residential Enclave, Ilorin</span>
+                <span class="presence-desc">Property Management: 6 units of residential apartments optimized with maintenance plans.</span>
+              </div>
+              <div class="presence-item">
+                <span class="presence-title">Kwara State University (KWASU), Malete</span>
+                <span class="presence-desc">Student Housing Management: 10 units of room self-contain accommodations optimized for student living.</span>
+              </div>
+              <div class="presence-item">
+                <span class="presence-title">Kwara State Polytechnic, Eleko, Ilorin</span>
+                <span class="presence-desc">Student Housing Portfolios: 17 units of self-contain student rooms under full management.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Clientele Base Grid -->
+      <section class="clientele-section">
+        <div class="section-header">
+          <span class="section-subtitle">Trusted Partners</span>
+          <h2 class="section-title">Our Clientele Base</h2>
+          <p class="section-desc">We work with financial institutions, microfinance partners, agricultural conglomerates, and corporate leaders.</p>
+        </div>
+        <div class="clientele-grid">
+          <div class="client-card">AFEX COMMODITIES EXCHANGE</div>
+          <div class="client-card">LEPTONS MULTI CONCEPT</div>
+          <div class="client-card">UNIVERSITY OF ABUJA MFB</div>
+          <div class="client-card">SCENG7 GLOBAL LTD</div>
+          <div class="client-card">VALIANT FOOT LIMITED</div>
+          <div class="client-card">AMIRALS GLOBAL INVESTMENTS</div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ============================================== -->
+    <!-- VIEW 3: SERVICES PAGE                          -->
+    <!-- ============================================== -->
+    <div id="view-services" class="page-view">
+      
+      <!-- Services Overview -->
+      <section>
+        <div class="section-header">
+          <span class="section-subtitle">Services Portfolio</span>
+          <h2 class="section-title">Distinguished Real Estate Capabilities</h2>
+          <p class="section-desc">Delivering regulatory compliance, risk mitigation, and optimization across all asset categories.</p>
+        </div>
+        
+        <div class="services-grid">
+          
+          <!-- Valuation -->
+          <div class="service-card">
+            <div class="service-card-icon"><i class="fa-solid fa-calculator"></i></div>
+            <h3>Property & Asset Valuation</h3>
+            <p>
+              Delivering precise, legally compliant asset valuations aligned with International Valuation Standards (IVS), IFRS, and IPSAS. We cover land, skyscrapers, machinery systems, agricultural installations, and vehicle fleets.
+            </p>
+          </div>
+
+          <!-- Property/Facility Management -->
+          <div class="service-card">
+            <div class="service-card-icon"><i class="fa-solid fa-building-circle-check"></i></div>
+            <h3>Property & Facility Management</h3>
+            <p>
+              Managing operations, tenant services, maintenance schedules, and rental income accounts. We integrate green technologies and energy-saving structures to maximize asset yields and ensure high occupant retention.
+            </p>
+          </div>
+
+          <!-- Auctioneering -->
+          <div class="service-card">
+            <div class="service-card-icon"><i class="fa-solid fa-gavel"></i></div>
+            <h3>Asset Auctioneering</h3>
+            <p>
+              Leading transparent, competitive bidding events for liquidations, mortgage foreclosures, deceased estates, and government equipment disposal. Certified procedures guarantee maximum fair market returns.
+            </p>
+          </div>
+
+          <!-- Agency -->
+          <div class="service-card">
+            <div class="service-card-icon"><i class="fa-solid fa-house-laptop"></i></div>
+            <h3>Real Estate Agency</h3>
+            <p>
+              Fostering secure transactions in buying, selling, and leasing luxury properties. We implement extensive screening, location verification, and contract preparation to guarantee buyer and seller peace of mind.
+            </p>
+          </div>
+
+          <!-- Pre-Investment Appraisals -->
+          <div class="service-card">
+            <div class="service-card-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <h3>Feasibility & Viability Studies</h3>
+            <p>
+              Providing technical, financial, and environmental appraisals to model project returns. We help developers, banking partners, and investment funds allocate capital safely in diverse market climates.
+            </p>
+          </div>
+
+          <!-- Rating and Taxation -->
+          <div class="service-card">
+            <div class="service-card-icon"><i class="fa-solid fa-coins"></i></div>
+            <h3>Property Rating & Taxation</h3>
+            <p>
+              Determining rental assessments, tenement rate indexes, and land taxation compliance structures. We support public agencies in generating equitable revenue and assist companies in managing rate liabilities.
+            </p>
+          </div>
+
+          <!-- Titling & Documentation -->
+          <div class="service-card">
+            <div class="service-card-icon"><i class="fa-solid fa-file-contract"></i></div>
+            <h3>Land Titling & Documentation</h3>
+            <p>
+              Navigating Governor’s Consent audits, Certificates of Occupancy (C of O) applications, Survey Plans, and title deeds registration. Direct agency coordination secures and speed-tracks official title approvals.
+            </p>
+          </div>
+
+          <!-- Real Estate Consultancy -->
+          <div class="service-card">
+            <div class="service-card-icon"><i class="fa-solid fa-user-tie"></i></div>
+            <h3>Strategic Consultancy</h3>
+            <p>
+              Providing advisory services on portfolio restructuring, land laws, joint ventures, and municipal zoning guidelines. We turn complex real estate scenarios into long-term strategic benefits.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- ESVARBON Professional Scale of Charges Section -->
+        <div class="fee-structure-container">
+          <div class="fee-details">
+            <span class="section-subtitle" style="text-align: left; margin-bottom: 0;">Scale of Charges Compliance</span>
+            <h3 style="font-size: 1.75rem;">ESVARBON Approved Professional Fee Scale</h3>
+            <p>
+              Our fee structures are set in strict compliance with the **Approved Scale of Professional Charges** issued by the **Estate Surveyors and Valuers Registration Board of Nigeria (ESVARBON)** under Decree 24 of 1975.
+            </p>
+            <p>
+              This official framework ensures fee transparency, regulatory alignment, and prevents professional misconduct. While we remain flexible in developing payment timelines, project scopes, and budgets, the firm never compromises compliance, integrity, and ethical standard parameters.
+            </p>
+          </div>
+          <div class="fee-badge-card">
+            <i class="fa-solid fa-building-circle-check"></i>
+            <h4>Licensed Authority</h4>
+            <p>Fully compliant with ESVARBON Decree 24 of 1975 standards.</p>
+            <p class="text-gold" style="margin-top: 15px; font-weight: 700; font-family: var(--font-title);">REGISTRATION NO. F00644</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ============================================== -->
+    <!-- VIEW 4: PROPERTIES & LISTINGS PAGE             -->
+    <!-- ============================================== -->
+    <div id="view-listings" class="page-view">
+      
+      <section>
+        <div class="section-header">
+          <span class="section-subtitle">Property Portal</span>
+          <h2 class="section-title">Explore Exquisite Real Estate Listings</h2>
+          <p class="section-desc">Select premium properties managed and represented by our firm. Touch base directly with the office via WhatsApp for inquiries.</p>
+        </div>
+        
+        <!-- Search & Filter Controls -->
+        <div class="listings-search-bar">
+          <div class="search-field">
+            <label for="filter-status">Listing Status</label>
+            <select id="filter-status" onchange="applyFilters()">
+              <option value="all">All Properties</option>
+              <option value="Sale">For Sale</option>
+              <option value="Rent">For Rent</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label for="filter-type">Property Type</label>
+            <select id="filter-type" onchange="applyFilters()">
+              <option value="all">All Types</option>
+              <option value="Residential">Residential</option>
+              <option value="Commercial">Commercial</option>
+              <option value="Industrial">Industrial</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label for="filter-location">Location</label>
+            <select id="filter-location" onchange="applyFilters()">
+              <option value="all">All Locations</option>
+              <option value="Abuja">Abuja</option>
+              <option value="Lagos">Lagos</option>
+              <option value="Kwara">Kwara</option>
+            </select>
+          </div>
+          <div class="search-btn-container">
+            <button class="btn btn-primary" style="width: 100%; height: 46px;" onclick="resetFilters()">
+              <i class="fa-solid fa-rotate-left"></i> Reset Filters
+            </button>
+          </div>
+        </div>
+
+        <!-- Property Grid Container -->
+        <div class="listings-grid" id="listings-container">
+          <!-- Populated dynamically via app.js -->
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ============================================== -->
+    <!-- VIEW 5: ADMIN / ADD LISTING PAGE               -->
+    <!-- ============================================== -->
+    <div id="view-admin" class="page-view">
+      
+      <section>
+        <div class="section-header">
+          <span class="section-subtitle">Administrator Panel</span>
+          <h2 class="section-title">Add Property Listing</h2>
+          <p class="section-desc">Create or update properties on the portal. Listings are stored in the local session database and will display immediately on the public properties page.</p>
+        </div>
+        
+        <div class="admin-layout">
+          
+          <!-- Uploader Form -->
+          <div class="admin-card">
+            <form id="add-listing-form" class="admin-form" onsubmit="handleFormSubmit(event)">
+              
+              <div class="form-group">
+                <label for="p-title">Property Title</label>
+                <input type="text" id="p-title" required placeholder="e.g. Luxury 4-Bedroom Detached Villa">
+              </div>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="p-price">Price Display</label>
+                  <input type="text" id="p-price" required placeholder="e.g. ₦120,000,000 or ₦2,500,000/yr">
+                </div>
+                <div class="form-group">
+                  <label for="p-location">State Location</label>
+                  <select id="p-location" required>
+                    <option value="">Select State</option>
+                    <option value="Abuja">Abuja (FCT)</option>
+                    <option value="Lagos">Lagos State</option>
+                    <option value="Kwara">Kwara State</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="p-status">Market Status</label>
+                  <select id="p-status" required>
+                    <option value="Sale">For Sale</option>
+                    <option value="Rent">For Rent</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="p-type">Property Category</label>
+                  <select id="p-type" required>
+                    <option value="Residential">Residential</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Industrial">Industrial</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="p-address">Specific Address</label>
+                  <input type="text" id="p-address" required placeholder="e.g. Guzape District, Abuja">
+                </div>
+                <div class="form-group">
+                  <label for="p-whatsapp">WhatsApp Contact (Owner/Broker)</label>
+                  <input type="text" id="p-whatsapp" required value="2347038620904" placeholder="e.g. 2347038620904">
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="p-beds">Bedrooms Count</label>
+                  <input type="number" id="p-beds" min="0" placeholder="e.g. 4">
+                </div>
+                <div class="form-group">
+                  <label for="p-baths">Bathrooms Count</label>
+                  <input type="number" id="p-baths" min="0" placeholder="e.g. 5">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="p-desc">Property Description</label>
+                <textarea id="p-desc" required placeholder="Outline key highlights, amenities, power backup, and utility access details."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>Property Visual (Image Upload)</label>
+                <div class="file-upload-box">
+                  <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                  <p class="upload-text">Drag & drop image here or click to choose file</p>
+                  <input type="file" id="p-image-file" accept="image/*" required onchange="previewUploadImage(this)">
+                  <img id="upload-preview-img" class="upload-preview" alt="Listing Preview">
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="height: 50px;">
+                <i class="fa-solid fa-circle-plus"></i> Save & Publish Listing
+              </button>
+
+            </form>
+          </div>
+
+          <!-- Interactive Live Preview Pane -->
+          <div class="admin-preview-pane">
+            <h3 class="admin-preview-title text-gradient">Card Live Preview</h3>
+            <div id="live-preview-container">
+              <!-- Live template syncs here -->
+              <div class="listing-card">
+                <div class="listing-img-wrapper">
+                  <div class="listing-status-tag" id="prev-status">FOR SALE</div>
+                  <div class="listing-type-tag" id="prev-type">RESIDENTIAL</div>
+                  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600" class="listing-img" id="prev-img" alt="Listing Image">
+                </div>
+                <div class="listing-card-body">
+                  <div class="listing-price" id="prev-price">₦120,000,000</div>
+                  <h3 class="listing-title" id="prev-title">Luxury Villa Title</h3>
+                  <div class="listing-location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span id="prev-address">Guzape District, Abuja</span>
+                  </div>
+                  <div class="listing-details">
+                    <div class="listing-detail-item">
+                      <i class="fa-solid fa-bed"></i> <span id="prev-beds">4</span> Beds
+                    </div>
+                    <div class="listing-detail-item">
+                      <i class="fa-solid fa-shower"></i> <span id="prev-baths">5</span> Baths
+                    </div>
+                  </div>
+                </div>
+                <div class="listing-card-footer">
+                  <button class="btn btn-whatsapp" style="width: 100%;">
+                    <i class="fab fa-whatsapp"></i> Contact via WhatsApp
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ============================================== -->
+    <!-- VIEW 6: CONTACT PAGE                           -->
+    <!-- ============================================== -->
+    <div id="view-contact" class="page-view">
+      
+      <section>
+        <div class="section-header">
+          <span class="section-subtitle">Get In Touch</span>
+          <h2 class="section-title">Collaborate With Sakariyau Jamiu & Co.</h2>
+          <p class="section-desc">Submit valuation project specs, property management files, or schedule direct legal advisory audits at any office.</p>
+        </div>
+        
+        <div class="contact-layout">
+          
+          <div class="contact-info">
+            <div class="contact-card">
+              <h3>Principal Headquarters (Abuja)</h3>
+              <div class="contact-detail-line">
+                <i class="fa-solid fa-location-dot"></i>
+                <p>Fatima Plaza, Suite E3, Fatima Plaza, Wuye District, FCT, Abuja.</p>
+              </div>
+              <div class="contact-detail-line">
+                <i class="fa-solid fa-envelope"></i>
+                <p>sakariyaujamiuandco@gmail.com</p>
+              </div>
+              <div class="contact-detail-line">
+                <i class="fa-solid fa-phone"></i>
+                <p>+234 703 862 0904, +234 703 902 7708</p>
+              </div>
+            </div>
+            
+            <!-- Accordion for other offices -->
+            <div class="office-accordion">
+              <h3 style="font-size: 1.15rem; margin-top: 15px;">Regional Office Directories</h3>
+              
+              <!-- Lagos Office Accordion -->
+              <div class="office-accordion-item">
+                <div class="office-header" onclick="toggleAccordion(this)">
+                  <h4>Lagos Office</h4>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="office-body">
+                  <p><strong>Address:</strong> 2, Gidado Street, Off Ijede Road, Ikorodu, Lagos State.</p>
+                  <p><strong>Phone Lines:</strong> 08067328121, 07038620904</p>
+                </div>
+              </div>
+
+              <!-- Kano Office Accordion -->
+              <div class="office-accordion-item">
+                <div class="office-header" onclick="toggleAccordion(this)">
+                  <h4>Kano Office</h4>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="office-body">
+                  <p><strong>Address:</strong> No 2B Castle Plaza, Along Gwarzo Road, Kano State.</p>
+                  <p><strong>Phone Lines:</strong> 08134736140, 09034394219, 07038620904</p>
+                </div>
+              </div>
+
+              <!-- Kaduna Office Accordion -->
+              <div class="office-accordion-item">
+                <div class="office-header" onclick="toggleAccordion(this)">
+                  <h4>Kaduna Office</h4>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="office-body">
+                  <p><strong>Address:</strong> 6A, Astajam Building, 3rd Floor, Ali Akilu House, Ahmadu Bello Way, Kaduna State.</p>
+                  <p><strong>Phone Lines:</strong> 07082590972, 09044057232, 07038620904</p>
+                </div>
+              </div>
+
+              <!-- Ilorin Office Accordion -->
+              <div class="office-accordion-item">
+                <div class="office-header" onclick="toggleAccordion(this)">
+                  <h4>Ilorin Office</h4>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="office-body">
+                  <p><strong>Address:</strong> 21, Offa Road, Adjacent CBN, Ilorin, Kwara State.</p>
+                  <p><strong>Phone Lines:</strong> 07039027708, 07039024937, 07038620904</p>
+                </div>
+              </div>
+
+              <!-- Ibadan Office Accordion -->
+              <div class="office-accordion-item">
+                <div class="office-header" onclick="toggleAccordion(this)">
+                  <h4>Ibadan Office</h4>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="office-body">
+                  <p><strong>Address:</strong> Block A1, Suite 23, Irepodun Ultra-Modern Complex, Saki Motor Park, Sango, Ibadan.</p>
+                  <p><strong>Phone Lines:</strong> 08078888142, 07038620904</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Contact Inquiry Form -->
+          <div class="contact-form-container">
+            <h3 style="font-size: 1.35rem; margin-bottom: 25px;">Send Valuation Request / Message</h3>
+            <form class="contact-form" onsubmit="handleContactSubmit(event)">
+              <div class="form-group">
+                <label for="c-name">Full Name / Corporate Title</label>
+                <input type="text" id="c-name" required placeholder="e.g. John Doe (Afex Inc.)">
+              </div>
+              <div class="form-group">
+                <label for="c-email">Email Address</label>
+                <input type="email" id="c-email" required placeholder="e.g. client@company.com">
+              </div>
+              <div class="form-group">
+                <label for="c-phone">Contact Number</label>
+                <input type="tel" id="c-phone" required placeholder="e.g. +234 800 000 0000">
+              </div>
+              <div class="form-group">
+                <label for="c-subject">Inquiry Subject</label>
+                <select id="c-subject" required>
+                  <option value="Asset Valuation">Asset Valuation Request</option>
+                  <option value="Facility Management">Facility Management Setup</option>
+                  <option value="Property Listing">Listing Purchase Inquiry</option>
+                  <option value="Other">General Real Estate Consultancy</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="c-message">Inquiry Details</label>
+                <textarea id="c-message" required placeholder="Provide brief details on property locations, sizing, or machinery inventory..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="height: 50px;">
+                <i class="fa-solid fa-paper-plane"></i> Submit Request
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- ============================================== -->
+  <!-- CREDENTIALS DETAIL HUB MODAL                   -->
+  <!-- ============================================== -->
+  <div id="credential-modal" class="modal-overlay" onclick="closeCredentialModal(event)">
+    <div class="modal-content">
+      <div class="modal-close" onclick="closeCredentialModal(event, true)">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <div class="modal-body">
+        
+        <!-- Document Simulation Preview -->
+        <div class="modal-doc-viewer">
+          <div class="modal-doc-header">
+            <span id="doc-issuer-top">FEDERAL REPUBLIC OF NIGERIA</span>
+            <span id="doc-year-top">2026</span>
+          </div>
+          <div class="modal-doc-body">
+            <span class="modal-doc-subtitle" id="doc-subtitle">CERTIFICATE OF REGISTRATION</span>
+            <h4 class="modal-doc-title" id="doc-title">SAKARIYAU JAMIU & CO</h4>
+            <div class="modal-doc-seal" id="doc-seal">APPROVED SEAL</div>
+            <p style="font-size: 0.8rem; margin: 10px 0; font-style: italic;" id="doc-description">This certifies compliance with all statutory standards.</p>
+            <div class="modal-doc-number" id="doc-number">REG: BN-7297821</div>
+          </div>
+          <div class="modal-doc-stamp" id="doc-stamp">
+            VERIFIED SECURE BY SAKARIYAU JAMIU & CO SYSTEM 2026
+          </div>
+        </div>
+        
+        <!-- Metadata and Description Panel -->
+        <div class="modal-info-panel">
+          <h3 class="modal-info-title" id="modal-info-title">CAC Corporate Accreditation</h3>
+          <p class="modal-info-desc" id="modal-info-desc">
+            This certifies the legal registration and business name incorporation of the firm.
+          </p>
+          
+          <div class="modal-info-meta">
+            <div class="modal-meta-line">
+              <span>Authority:</span>
+              <span id="modal-meta-authority">Corporate Affairs Commission (CAC)</span>
+            </div>
+            <div class="modal-meta-line">
+              <span>License / Registration Number:</span>
+              <span id="modal-meta-number">BN 7297821</span>
+            </div>
+            <div class="modal-meta-line">
+              <span>Scope:</span>
+              <span id="modal-meta-scope">Estate Surveying & Valuation Practice</span>
+            </div>
+            <div class="modal-meta-line">
+              <span>Registered Location:</span>
+              <span id="modal-meta-location">Fatima Plaza, Wuye District, Abuja</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-container">
+          <div class="logo-icon">S</div>
+          <div class="logo-text">
+            <span class="logo-title" style="color: var(--text-light);">SAKARIYAU JAMIU</span>
+            <span class="logo-subtitle">& CO.</span>
+          </div>
+        </div>
+        <p class="footer-brand-desc">
+          Professional and accredited Chartered Estate Surveyors, Asset Valuers, and Facility Operations managers across Nigeria. Upholding integrity, expertise, and precision.
+        </p>
+      </div>
+      
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <a href="#home" class="footer-link" onclick="navigate('home')">Home</a>
+        <a href="#about" class="footer-link" onclick="navigate('about')">About Us</a>
+        <a href="#services" class="footer-link" onclick="navigate('services')">Services Portfolio</a>
+        <a href="#listings" class="footer-link" onclick="navigate('listings')">Property Listings</a>
+      </div>
+      
+      <div class="footer-nav">
+        <h4>Direct Contact</h4>
+        <p style="font-size: 0.85rem;"><i class="fa-solid fa-phone text-gold" style="margin-right: 8px;"></i> +234 703 862 0904</p>
+        <p style="font-size: 0.85rem;"><i class="fa-solid fa-envelope text-gold" style="margin-right: 8px;"></i> sakariyaujamiuandco@gmail.com</p>
+        <p style="font-size: 0.85rem; line-height: 1.4;"><i class="fa-solid fa-location-dot text-gold" style="margin-right: 8px;"></i> Suite E3, Fatima Plaza, Wuye District, FCT, Abuja.</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Sakariyau Jamiu & Co. All Rights Reserved. Fully Certified ESVARBON (F00644) / NIESV Associate firm.</p>
+      <div class="social-links">
+        <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/2347038620904" class="social-icon" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Three.js CDN and Custom Logic scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
