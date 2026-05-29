@@ -1,5 +1,23 @@
 /* Sakariyau Jamiu & Co. - Luxury Site Logic & 3D Interactive Engine */
 
+// Supabase Configuration Settings
+// REPLACE THESE with your actual Supabase URL and Anon Key once you create your project
+const SUPABASE_CONFIG = {
+  url: "https://wuwregcurcgjjhgnuvbp.supabase.co",
+  anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1d3JlZ2N1cmNnampoZ251dmJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNzY0NTMsImV4cCI6MjA5NTY1MjQ1M30.IXJXgIin-CNDZlLgKjXoYo8B8HSEucucXbol4_u58P0"
+};
+
+// Initialize Supabase Client
+let supabaseClient = null;
+if (SUPABASE_CONFIG.url && SUPABASE_CONFIG.anonKey) {
+  try {
+    supabaseClient = supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+    console.log("Supabase Client initialized successfully.");
+  } catch (err) {
+    console.error("Failed to initialize Supabase Client:", err);
+  }
+}
+
 // Default Property Listings Database (Seed Data)
 const DEFAULT_LISTINGS = [
   {
@@ -167,6 +185,7 @@ const CREDENTIALS_DB = {
 // Global Application State
 let appListings = [];
 let uploadBase64Image = "";
+let uploadFileObject = null; // Store raw file object for Supabase upload
 
 // -------------------------------------------------------------
 // SPA ROUTER ENGINE
@@ -207,6 +226,11 @@ function navigate(viewId) {
   // Trigger 3D renderer resize check if view is home
   if (viewId === "home") {
     onWindowResize();
+  }
+
+  // Trigger admin auth check if view is admin
+  if (viewId === "admin") {
+    checkAdminAuth();
   }
 }
 
@@ -493,7 +517,82 @@ function closeCredentialModal(event, forceClose = false) {
 // -------------------------------------------------------------
 
 // Populate database from LocalStorage + Seeds
+// Contentful Configuration Settings
+// Fill these with your space's credentials once you create them
+const CONTENTFUL_CONFIG = {
+  spaceId: "", // e.g. "x1y2z3..."
+  accessToken: "", // e.g. "aBcDeFg123..."
+  environment: "master",
+  contentTypeId: "property"
+};
+
+// Initialize Client (will be set if config is valid)
+let contentfulClient = null;
+
+// Populate database from Supabase, Contentful, or fallback to LocalStorage + Seeds
 function initListingsEngine() {
+  if (supabaseClient) {
+    fetchListingsFromSupabase();
+    return;
+  }
+
+  if (CONTENTFUL_CONFIG.spaceId && CONTENTFUL_CONFIG.accessToken) {
+    try {
+      contentfulClient = contentful.createClient({
+        space: CONTENTFUL_CONFIG.spaceId,
+        accessToken: CONTENTFUL_CONFIG.accessToken,
+        environment: CONTENTFUL_CONFIG.environment || "master"
+      });
+      fetchListingsFromContentful();
+      return;
+    } catch (err) {
+      console.error("Failed to initialize Contentful Client:", err);
+    }
+  }
+
+  // Fallback if Contentful keys are not set
+  initLocalStorageListings();
+}
+
+async function fetchListingsFromSupabase() {
+  if (!supabaseClient) return;
+
+  try {
+    const { data, error } = await supabaseClient
+      .from("properties")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) throw error;
+
+    if (data && data.length > 0) {
+      appListings = data.map(item => ({
+        id: item.id,
+        title: item.title,
+        price: item.price,
+        location: item.location,
+        address: item.address,
+        status: item.status,
+        type: item.type,
+        beds: item.beds,
+        baths: item.baths,
+        whatsapp: item.whatsapp,
+        image: item.image_url,
+        description: item.description
+      }));
+    } else {
+      // If table is active but empty, we can show default properties
+      appListings = [...DEFAULT_LISTINGS];
+    }
+    renderListings(appListings);
+  } catch (err) {
+    console.error("Error loading properties from Supabase:", err);
+    showToast("Using offline properties (database error).");
+    initLocalStorageListings();
+  }
+}
+
+function initLocalStorageListings() {
   const storedListings = localStorage.getItem("sjc_listings");
   if (storedListings) {
     appListings = JSON.parse(storedListings);
@@ -502,6 +601,51 @@ function initListingsEngine() {
     localStorage.setItem("sjc_listings", JSON.stringify(appListings));
   }
   renderListings(appListings);
+}
+
+async function fetchListingsFromContentful() {
+  if (!contentfulClient) return;
+
+  try {
+    const response = await contentfulClient.getEntries({
+      content_type: CONTENTFUL_CONFIG.contentTypeId,
+      order: "-sys.createdAt" // order by newest first
+    });
+
+    appListings = response.items.map(item => {
+      const fields = item.fields;
+      let imageUrl = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600";
+      
+      // Safe extraction of the media URL
+      if (fields.image && fields.image.fields && fields.image.fields.file) {
+        imageUrl = fields.image.fields.file.url;
+        if (imageUrl.startsWith("//")) {
+          imageUrl = "https:" + imageUrl;
+        }
+      }
+
+      return {
+        id: item.sys.id,
+        title: fields.title || "Untitled Property",
+        price: fields.price || "Contact for Price",
+        location: fields.location || "Abuja",
+        address: fields.address || "",
+        status: fields.status || "Sale",
+        type: fields.type || "Residential",
+        beds: fields.beds ? parseInt(fields.beds) : null,
+        baths: fields.baths ? parseInt(fields.baths) : null,
+        whatsapp: fields.whatsapp || "2347038620904",
+        image: imageUrl,
+        description: fields.description || ""
+      };
+    });
+
+    renderListings(appListings);
+  } catch (error) {
+    console.error("Error loading properties from Contentful API:", error);
+    showToast("Using offline property listings.");
+    initLocalStorageListings();
+  }
 }
 
 // Render property listings in HTML container
@@ -597,6 +741,8 @@ function previewUploadImage(input) {
   const file = input.files[0];
   if (!file) return;
 
+  uploadFileObject = file; // Store raw file object for Supabase upload
+
   const reader = new FileReader();
   reader.onload = function(e) {
     uploadBase64Image = e.target.result;
@@ -648,7 +794,7 @@ function setupRealTimePreview() {
 }
 
 // Handle Add Property form submission
-function handleFormSubmit(event) {
+async function handleFormSubmit(event) {
   event.preventDefault();
 
   const title = document.getElementById("p-title").value;
@@ -663,54 +809,127 @@ function handleFormSubmit(event) {
   const description = document.getElementById("p-desc").value;
 
   // Validate image uploaded
-  if (!uploadBase64Image) {
+  if (!uploadBase64Image && !uploadFileObject) {
     showToast("Please upload an image visual before saving.");
     return;
   }
 
-  // Create new listing object
-  const newListing = {
-    id: "l-custom-" + Date.now(),
-    title: title,
-    price: price,
-    location: location,
-    address: address,
-    status: status,
-    type: type,
-    beds: beds,
-    baths: baths,
-    whatsapp: whatsapp,
-    image: uploadBase64Image,
-    description: description
-  };
+  // Loading state for button
+  const submitBtn = event.target.querySelector("button[type='submit']");
+  const originalBtnText = submitBtn.innerHTML;
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
 
-  // Add to global state list
-  appListings.unshift(newListing); // prepend to top
-  localStorage.setItem("sjc_listings", JSON.stringify(appListings));
+  try {
+    let finalImageUrl = uploadBase64Image;
 
-  // Reset Form
-  document.getElementById("add-listing-form").reset();
-  uploadBase64Image = "";
-  document.getElementById("upload-preview-img").style.display = "none";
-  document.getElementById("upload-preview-img").src = "";
-  
-  // Reset Card Preview defaults
-  document.getElementById("prev-title").innerText = "Luxury Villa Title";
-  document.getElementById("prev-price").innerText = "₦120,000,000";
-  document.getElementById("prev-address").innerText = "Guzape District, Abuja";
-  document.getElementById("prev-status").innerText = "FOR SALE";
-  document.getElementById("prev-type").innerText = "RESIDENTIAL";
-  document.getElementById("prev-beds").innerText = "4";
-  document.getElementById("prev-baths").innerText = "5";
-  document.getElementById("prev-img").src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600";
+    if (supabaseClient) {
+      if (!uploadFileObject) {
+        throw new Error("Please select an image file to upload.");
+      }
 
-  // Alert success
-  showToast("Listing published successfully!");
+      // Generate a unique safe filename
+      const fileExt = uploadFileObject.name.split('.').pop();
+      const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
 
-  // Redirect to listings view to see the new property
-  setTimeout(() => {
-    navigate("listings");
-  }, 1000);
+      // Upload file to bucket
+      const { data: uploadData, error: uploadError } = await supabaseClient
+        .storage
+        .from("property-photos")
+        .upload(fileName, uploadFileObject, {
+          cacheControl: '3600',
+          upsert: false
+        });
+
+      if (uploadError) throw uploadError;
+
+      // Get public URL
+      const { data: urlData } = supabaseClient
+        .storage
+        .from("property-photos")
+        .getPublicUrl(fileName);
+
+      if (!urlData || !urlData.publicUrl) {
+        throw new Error("Failed to generate public URL for uploaded photo.");
+      }
+      finalImageUrl = urlData.publicUrl;
+
+      // Insert listing into properties table
+      const { data: insertData, error: insertError } = await supabaseClient
+        .from("properties")
+        .insert([{
+          title: title,
+          price: price,
+          location: location,
+          address: address,
+          status: status,
+          type: type,
+          beds: beds,
+          baths: baths,
+          whatsapp: whatsapp,
+          image_url: finalImageUrl,
+          description: description
+        }]);
+
+      if (insertError) throw insertError;
+
+      // Re-fetch lists from Supabase so the client immediately sees it
+      await fetchListingsFromSupabase();
+
+    } else {
+      // LocalStorage Fallback Flow
+      const newListing = {
+        id: "l-custom-" + Date.now(),
+        title: title,
+        price: price,
+        location: location,
+        address: address,
+        status: status,
+        type: type,
+        beds: beds,
+        baths: baths,
+        whatsapp: whatsapp,
+        image: finalImageUrl,
+        description: description
+      };
+
+      appListings.unshift(newListing); // prepend to top
+      localStorage.setItem("sjc_listings", JSON.stringify(appListings));
+      renderListings(appListings);
+    }
+
+    // Reset Form
+    document.getElementById("add-listing-form").reset();
+    uploadBase64Image = "";
+    uploadFileObject = null;
+    document.getElementById("upload-preview-img").style.display = "none";
+    document.getElementById("upload-preview-img").src = "";
+    
+    // Reset Card Preview defaults
+    document.getElementById("prev-title").innerText = "Luxury Villa Title";
+    document.getElementById("prev-price").innerText = "₦120,000,000";
+    document.getElementById("prev-address").innerText = "Guzape District, Abuja";
+    document.getElementById("prev-status").innerText = "FOR SALE";
+    document.getElementById("prev-type").innerText = "RESIDENTIAL";
+    document.getElementById("prev-beds").innerText = "4";
+    document.getElementById("prev-baths").innerText = "5";
+    document.getElementById("prev-img").src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600";
+
+    // Alert success
+    showToast("Listing published successfully!");
+
+    // Redirect to listings view to see the new property
+    setTimeout(() => {
+      navigate("listings");
+    }, 1000);
+
+  } catch (err) {
+    console.error("Failed to save property:", err);
+    showToast(`Error: ${err.message || "Failed to publish property."}`);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalBtnText;
+  }
 }
 
 // -------------------------------------------------------------
@@ -758,9 +977,129 @@ function showToast(message) {
 }
 
 // -------------------------------------------------------------
+// ADMIN LOGIN & AUTH CONTROLLER
+// -------------------------------------------------------------
+const ADMIN_PASSWORD_HASH = "jamiu2026"; // Default login password
+
+async function checkAdminAuth() {
+  const loginView = document.getElementById("admin-login-view");
+  const dashboardView = document.getElementById("admin-dashboard-view");
+  
+  if (!loginView || !dashboardView) return;
+
+  // Check Supabase session first
+  if (supabaseClient) {
+    try {
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      if (session) {
+        loginView.style.display = "none";
+        dashboardView.style.display = "block";
+        return;
+      }
+    } catch (err) {
+      console.error("Failed to get session:", err);
+    }
+  }
+
+  // Fallback to Local Session Storage
+  const isLoggedIn = sessionStorage.getItem("sjc_admin_logged_in") === "true";
+  if (isLoggedIn) {
+    loginView.style.display = "none";
+    dashboardView.style.display = "block";
+  } else {
+    loginView.style.display = "flex";
+    dashboardView.style.display = "none";
+  }
+}
+
+async function handleAdminLogin(event) {
+  event.preventDefault();
+  const passwordInput = document.getElementById("admin-password");
+  if (!passwordInput) return;
+
+  const submitBtn = event.target.querySelector("button[type='submit']");
+  const originalBtnText = submitBtn.innerHTML;
+
+  if (supabaseClient) {
+    const emailInput = document.getElementById("admin-email");
+    if (!emailInput || !emailInput.value) {
+      showToast("Please enter an email address.");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...';
+
+    try {
+      const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email: emailInput.value,
+        password: passwordInput.value
+      });
+
+      if (error) throw error;
+
+      passwordInput.value = "";
+      await checkAdminAuth();
+      showToast("Authentication successful!");
+    } catch (err) {
+      console.error("Authentication failed:", err);
+      showToast(`Login failed: ${err.message || "Invalid credentials."}`);
+      passwordInput.value = "";
+      passwordInput.focus();
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+    }
+  } else {
+    // Local offline password authentication
+    if (passwordInput.value === ADMIN_PASSWORD_HASH) {
+      sessionStorage.setItem("sjc_admin_logged_in", "true");
+      passwordInput.value = "";
+      await checkAdminAuth();
+      showToast("Authentication successful!");
+    } else {
+      showToast("Incorrect password. Please try again.");
+      passwordInput.value = "";
+      passwordInput.focus();
+    }
+  }
+}
+
+async function handleAdminLogout() {
+  if (supabaseClient) {
+    try {
+      await supabaseClient.auth.signOut();
+    } catch (err) {
+      console.error("Sign out failed:", err);
+    }
+  }
+  sessionStorage.removeItem("sjc_admin_logged_in");
+  await checkAdminAuth();
+  showToast("Logged out successfully.");
+}
+
+// -------------------------------------------------------------
 // MAIN INITIALIZATION BINDING
 // -------------------------------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  // Configure Auth UI elements depending on Supabase status
+  const emailGroup = document.getElementById("admin-email-group");
+  const emailInput = document.getElementById("admin-email");
+  if (emailGroup && emailInput) {
+    if (supabaseClient) {
+      emailGroup.style.display = "block";
+      emailInput.required = true;
+      
+      const loginParagraph = document.querySelector("#admin-login-view .login-header p");
+      if (loginParagraph) {
+        loginParagraph.innerText = "Enter credentials to manage listings";
+      }
+    } else {
+      emailGroup.style.display = "none";
+      emailInput.required = false;
+    }
+  }
+
   // 1. Setup default path and navigate to home or current hash
   const currentHash = window.location.hash.substring(1) || "home";
   navigate(currentHash);
